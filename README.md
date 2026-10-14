@@ -3,7 +3,7 @@
 ![GitHub last commit](https://img.shields.io/github/last-commit/everett7623/airport-recommendations-2026)
 ![Stars](https://img.shields.io/github/stars/everett7623/airport-recommendations-2026?style=social)
 ![Forks](https://img.shields.io/github/forks/everett7623/airport-recommendations-2026?style=social)
-![Included](https://img.shields.io/badge/Included-61%20Airports-informational)
+![Included](https://img.shields.io/badge/Included-60%20Airports-informational)
 ![Visitors](https://visitor-badge.laobi.icu/badge?page_id=everett7623.airport-recommendations-2026)
 ![License](https://img.shields.io/github/license/everett7623/airport-recommendations-2026)
 
@@ -61,9 +61,7 @@
 
 ### 2026-10-13 更新
 - ✅ **同步：** 与 [VPSKnow.com](https://www.vpsknow.com/airport-recommendations) 机场推荐数据同步更新。
-- 🆕 **新增：** 无忧链接。
-- 🔄 **调整：** Nice加速专线机场 的资料、分类或运营状态已更新。
-- 🧹 **清理：** 新华云 已移出推荐目录。
+- 🧹 **清理：** 无忧链接 已移出推荐目录。
 - ⛔ **当前正式下架记录：** Sogo云、OneStep。
 
 👉 **查看完整评测与详细图文教程：[VPSKnow 机场推荐榜单](https://www.vpsknow.com/airport-recommendations)**（实时更新，内容更全）
@@ -814,7 +812,6 @@
 | **AmyTelecom** | IEPL专线 | ¥273/年起 | 流媒体 ✅ · ChatGPT ❓ | `佩奇系` `流媒体解锁` `稳定` | ⭐⭐ · 可用待核 · 证据低 | [直达](https://go.uukk.de/amytele) |
 | **Kuromis** | IEPL专线 | ¥34/月起 | 流媒体 ❓ · ChatGPT ❓ | `贵族机场` `IEPL专线` `高峰期稳定` | 待评 · 证据低 | [直达](https://go.uukk.de/kuromis) |
 | **WgetCloud** | BGP专线 | ¥79/月起 | 流媒体 ❓ · ChatGPT ❓ | `稳定` `企业级` `不差钱` | ⭐⭐⭐⭐ · 主力候选 · 证据中 | [直达](https://go.uukk.de/wgetcloud) |
-| **无忧链接** | 线路待继续核对 | ¥19/月 100GB起 | 流媒体 ✅ · ChatGPT ✅ | `专用客户端` `低价月付` `短周期先试` | 待评（新收录） | [直达](https://wuyoulink.org/) |
 | **Happy Vless** | VLESS + XHTTP | 0元1GB试用；¥9.9/月起 | 流媒体 ❓ · ChatGPT ❓ | `总榜收录` `试用` `短周期先试` | 待评（新收录） | [直达](https://go.uukk.de/happyvless) |
 | **Nexitally** | 高端专线 | ¥74.55/月起 | 流媒体 ✅ · ChatGPT ❓ | `总榜收录` `老牌` `流媒体` | 待评 · 证据低 | [直达](https://go.uukk.de/naiixi) |
 | **寰宇云** | 线路待重新核对 | 当前套餐待复核 | 流媒体 ❓ · ChatGPT ❓ | `运营变更` `总榜收录` `短周期测试` | ⭐⭐ · 运营待核 · 证据中 | [直达](https://go.uukk.de/huanyuyunvip) |
@@ -850,11 +847,12 @@
 - **Windows:** [Clash Verge Rev](https://github.com/clash-verge-rev/clash-verge-rev/releases) / [V2RayN](https://github.com/2dust/v2rayN/releases)
 - **macOS:** [Clash Verge Rev](https://github.com/clash-verge-rev/clash-verge-rev/releases)  / [Surge](https://nssurge.com/)
 - **iOS:** Shadowrocket（小火箭）/ Quantumult X
-- **Android:** [Clash for Android](https://github.com/Kr328/ClashForAndroid/releases) / [V2RayNG](https://github.com/2dust/v2rayNG/releases)
+- **Android:** [Clash Meta for Android](https://github.com/MetaCubeX/ClashMetaForAndroid/releases) / [v2rayNG](https://github.com/2dust/v2rayNG/releases)
 
 ### 配置教程
 
 详细配置教程请查看对应开源指引或：[docs/client-setup.md](docs/client-setup.md)
+进阶排障与协议兼容性：[进阶指南](docs/advanced.md) · [协议说明](docs/protocols.md)。技术核验日期见各文档，与机场数据版本独立。
 
 > 🔗 **全平台客户端下载与保姆级配置教程 →** [VPSKnow 教程中心](https://www.vpsknow.com/guides)
 
@@ -868,7 +866,7 @@
 
 ### Q2: IPLC/IEPL 专线是什么？
 
-**A:** IPLC（国际专线）和IEPL（以太网专线）是物理专线，不过墙，稳定性最高。BGP是多线路智能切换。公网中转是普通线路，价格便宜。
+**A:** IPLC/IEPL 是线路服务术语，机场标签不能单独证明端到端专线或性能保障；BGP 是路由协议。实际稳定性和速度应在自己的网络与时间段验证，详见 FAQ。
 
 ### Q3: 机场会不会跑路？
 
@@ -876,7 +874,7 @@
 
 ### Q4: 协议怎么选？
 
-**A:** Hysteria2（UDP抗封锁，晚高峰抢带宽），VLESS（新一代主流，配合AnyTLS延长节点寿命），Trojan（伪装HTTPS流量，安全性高）。
+**A:** 先确认服务商参数、客户端内核和网络条件兼容。Hysteria 2 需要 UDP 通路；VLESS/REALITY、Trojan 与 AnyTLS 各有配置要求，不能按协议名称保证速度或抗封锁能力。参见 [协议与兼容性](docs/protocols.md)。
 
 完整FAQ请查看：[docs/faq.md](docs/faq.md)
 
