@@ -19,8 +19,79 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
 const JSON_PATH = join(ROOT, 'data', 'airports.json');
 
-// 手动维护的固定主推名单；其余内容仍完全来自 VPSKnow 自动同步。
-const FIXED_FEATURED_AIRPORTS = ['网际快车', '喵喵网络', 'COCODUCK VPN', 'Fastlink', 'TAG', 'MESL', 'ImmTelecom', '肯の机', 'ViKing Links', 'WgetCloud'];
+// 本期编辑推荐的排序与展示文案；直达链接从同步数据读取。
+const FIXED_FEATURED_AIRPORTS = [
+  {
+    name: 'COCODUCK VPN',
+    positioning: 'No.1 性价比主力',
+    lineType: 'IEPL 专线 / BGP',
+    pricing: '**¥17/月**（100GB）',
+    description: '专线月付门槛低，日常刷网页、看视频的首选中端主力。',
+  },
+  {
+    name: '肯の机',
+    positioning: 'No.2 硬核直连主力',
+    lineType: 'CN2 GIA / 9929 / CMIN2（VLESS）',
+    pricing: '**¥35~40/月**（100GB）',
+    description: '三网顶级优化直连，晚高峰延迟低、丢包少，适合游戏与代码玩家。',
+  },
+  {
+    name: 'Fastlink',
+    positioning: 'No.3 亲民老牌',
+    lineType: 'BGP 入口 / IPLC',
+    pricing: '**¥20/月**（100GB）',
+    description: '老牌大厂，月付门槛亲民，适合预算有限但想要稳定日常过渡的用户。',
+  },
+  {
+    name: '喵喵网络',
+    positioning: 'No.4 最佳防失联备用',
+    lineType: 'Hysteria2 协议直连',
+    pricing: '**¥20 一次性**（100GB 不限时）',
+    description: '新协议暴力抗封锁，流量永久不过期，强烈推荐作为防失联的第二备用。',
+  },
+  {
+    name: 'Viking Links',
+    positioning: 'No.5 大流量/家庭合租',
+    lineType: '专线 + 优化直连',
+    pricing: '**¥72/月**（500GB）或季付 ¥118',
+    description: '单月总价略高但给足 500GB，每 GB 均摊极便宜，适合 4K 影音与多设备。',
+  },
+  {
+    name: 'MESL',
+    positioning: 'No.6 进阶专线',
+    lineType: 'IEPL 纯专线',
+    pricing: '**¥49~50/月**（120~200GB）',
+    description: '正规高规格专线，晚高峰稳定性强，适合对画质与连通率有进阶要求的用户。',
+  },
+  {
+    name: '网际快车',
+    positioning: 'No.7 超低门槛尝鲜',
+    lineType: 'Vless / Hysteria2',
+    pricing: '**免费试用 / ¥6.8 起**（20GB）',
+    description: '门槛极低支持试用，但节点与流量规格较小，仅适合轻度网页浏览。',
+  },
+  {
+    name: 'TAG',
+    positioning: 'No.8 全球全能冷门库',
+    lineType: 'IEPL 专线（Shadowsocks）',
+    pricing: '**¥114/月**（500GB）或季付 ¥185',
+    description: '节点覆盖 190+ 国家和地区，流媒体与特殊地区首选，但价格昂贵适合极客。',
+  },
+  {
+    name: 'ImmTelecom',
+    positioning: 'No.9 唯云系高品质专线',
+    lineType: '唯云 IEPL/IPLC 专线',
+    pricing: '**约 ¥70+/月**（500GB 起）',
+    description: '线路品质优秀但基本以大容量起售，总支出较高，面向高端散客与小团队。',
+  },
+  {
+    name: 'WgetCloud',
+    positioning: 'No.10 商务溢价机皇',
+    lineType: 'BGP 专线（Trojan/SS）',
+    pricing: '**¥79~99/月**（基础版需长周期）',
+    description: '线路稳定性顶尖，但无平价轻量包，普通个人用户自费购买意愿较低。',
+  },
+];
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 
@@ -64,14 +135,6 @@ function getDefunctAirports(data) {
   return Array.isArray(data.defunct) ? data.defunct : [];
 }
 
-function firstPricing(airports = [], fallback = '见详情') {
-  return airports.find(a => a?.pricing)?.pricing || fallback;
-}
-
-function airportPricing(airport, fallback = '见详情') {
-  return airport?.pricing || fallback;
-}
-
 const ACCESS_TYPE_LABELS = {
   universal: '通用订阅',
   dedicated: '专用客户端',
@@ -86,6 +149,65 @@ function markdownCell(value) {
   return String(value ?? '-')
     .replace(/\r?\n/g, '<br>')
     .replace(/\|/g, '\\|');
+}
+
+// 按同步源分类顺序选取代表机场，每家的价格与名称一一对应。
+function generateQuickSelectionGuide(data, detailPath = '') {
+  const cats = data.categories;
+  const groups = [
+    { scene: '🆓 先测试后购买', type: '免费试用', airports: cats.free_trial?.airports, count: 2, anchor: categoryAnchor('free_trial') },
+    { scene: '💰 预算有限（学生党）', type: '入门经济', airports: cats.budget?.airports, count: 3, anchor: categoryAnchor('budget') },
+    { scene: '⚡ 日常使用（看剧、办公）', type: '性价比均衡', airports: cats.balanced?.airports, count: 3, anchor: categoryAnchor('balanced') },
+    { scene: '👔 商务办公（专线候选）', type: '高端专线', airports: cats.premium?.airports, count: 2, anchor: categoryAnchor('premium') },
+    { scene: '📦 轻度使用（备用）', type: '按量计费', airports: cats.payAsYouGo?.airports, count: 2, anchor: categoryAnchor('payAsYouGo') },
+    { scene: '🔗 无AFF / 低AFF备选', type: '无AFF / 低AFF', airports: data.no_aff, count: 2, anchor: NO_AFF_ANCHOR },
+  ];
+  const lines = [
+    '## ⚡ 快速选择指南',
+    '',
+    '**按使用场景初筛，先核对套餐再试用：**',
+    '',
+    `> 数据版本：${markdownCell(data.version || '未知日期')}；代表机场与价格随 VPSKnow 每日同步更新，按源分类顺序展示。`,
+    '',
+    '| 使用场景 | 推荐类型 | 参考价格（逐家对应） | 代表机场 | 详情 |',
+    '|---------|---------|---------|---------|---------|',
+  ];
+  for (const group of groups) {
+    const airports = (group.airports || []).filter(a => !a.isUnderMaintenance).slice(0, group.count);
+    if (!airports.length) continue;
+    const prices = airports.map(a => `${markdownCell(a.name)}：${markdownCell(a.pricing || '见详情')}`).join('<br>');
+    const names = airports.map(a => markdownCell(a.name)).join('<br>');
+    lines.push(`| ${group.scene} | ${group.type} | ${prices} | ${names} | [查看](${detailPath}#${group.anchor}) |`);
+  }
+  lines.push('');
+  lines.push('> 一次性购买不等于永久有效，请核对对应套餐的有效期与流量重置规则。游戏用途需另测目标区服延迟和丢包。');
+  return lines;
+}
+
+// 分类详情与无 AFF 区共用参数布局，长简介放在表格外。
+function generateAirportDetails(airport) {
+  const lines = [];
+  if (airport.url) {
+    lines.push(`**🔗 官网：** [直达](${airport.url})`);
+    lines.push('');
+  }
+  lines.push('| 参数 | 说明 |');
+  lines.push('|:---|:---|');
+  lines.push(`| **价格** | ${markdownCell(airport.pricing || '待核对')} |`);
+  lines.push(`| **线路** | ${markdownCell(airport.lineType || '待核对')} |`);
+  lines.push(`| **接入** | ${accessTypeLabel(airport.accessType)} |`);
+  lines.push(`| **优惠** | ${airport.coupon ? `\`${markdownCell(airport.coupon)}\`` : '未提供'} |`);
+  lines.push(`| **特点** | ${markdownCell(airport.features?.length ? airport.features.join('，') : '未提供')} |`);
+  lines.push(`| **推荐** | ${recommendationRating(airport)} |`);
+  if (airport.description) {
+    lines.push('');
+    lines.push(`**简介：** ${airport.description}`);
+  }
+  if (airport.tags?.length) {
+    lines.push('');
+    lines.push(`**标签：** ${airport.tags.map(tag => `\`${tag}\``).join(' ')}`);
+  }
+  return lines;
 }
 
 // ─── Data Loading ────────────────────────────────────────────────────────────
@@ -136,6 +258,9 @@ function generateFullReadme(data) {
   // TOC
   lines.push('## 📋 目录导航');
   lines.push('');
+  lines.push('- [📢 最新活动与公告](#-最新活动与公告)');
+  lines.push('- [⚡ 快速选择指南](#-快速选择指南)');
+  lines.push('- [🏆 本期主推机场](#-本期主推机场)');
   for (const [key, cat] of Object.entries(cats)) {
     lines.push(`- [${cat.icon} ${cat.title}](#${categoryAnchor(key)})`);
   }
@@ -151,23 +276,6 @@ function generateFullReadme(data) {
 
   // Risk warning
   lines.push('> ⚠️ **风险提示：** 机场行业存在停服/跑路风险，建议**优先月付**，避免大额年付。同时备用 2–3 个机场互为容灾。详见 [免责声明](#disclaimer) 与 [风险控制指南](docs/blacklist.md)。');
-  lines.push('');
-  lines.push('---');
-  lines.push('');
-
-  // Fixed featured list (manual order)
-  lines.push('## 🏆 本期主推机场');
-  lines.push('');
-  lines.push('以下名单按固定编辑顺序展示，机场详情、价格和状态随 VPSKnow 数据同步更新。');
-  lines.push('');
-  lines.push('| 机场 | 类型 | 起步价 | 直达 |');
-  lines.push('|---|---|---|---|');
-  const airportByName = new Map(allAirports.map(a => [String(a.name || '').trim().toLowerCase(), a]));
-  for (const name of FIXED_FEATURED_AIRPORTS) {
-    const a = airportByName.get(name.trim().toLowerCase());
-    if (!a) continue;
-    lines.push(`| ${markdownCell(a.name)} | ${markdownCell(a.lineType || '-')} | ${markdownCell(a.pricing || '见详情')} | [官网直达](${a.url}) |`);
-  }
   lines.push('');
   lines.push('---');
   lines.push('');
@@ -212,41 +320,28 @@ function generateFullReadme(data) {
   lines.push('');
 
   // Quick selection guide
-  lines.push('## ⚡ 快速选择指南');
+  lines.push(...generateQuickSelectionGuide(data));
   lines.push('');
-  lines.push('**根据你的需求，3秒找到最适合的机场：**');
+  lines.push('---');
   lines.push('');
-  lines.push('| 使用场景 | 推荐类型 | 参考价格 | 代表机场 | 直达链接 |');
-  lines.push('|---------|---------|---------|---------|---------|');
-  if (cats.free_trial) {
-    const names = (cats.free_trial.airports || []).slice(0, 2).map(a => a.name).join('、');
-    lines.push(`| 🆓 先测试后购买 | 免费试用 | 免费 | ${names} | [查看详情](#${categoryAnchor('free_trial')}) |`);
-  }
-  if (cats.budget) {
-    const budgetAirports = cats.budget.airports || [];
-    const names = budgetAirports.slice(0, 3).map(a => a.name).join('、');
-    lines.push(`| 💰 预算有限（学生党） | 入门经济 | ${firstPricing(budgetAirports)} | ${names} | [查看详情](#${categoryAnchor('budget')}) |`);
-  }
-  if (cats.balanced) {
-    const balancedAirports = cats.balanced.airports || [];
-    const names3 = balancedAirports.slice(0, 3).map(a => a.name).join('、');
-    lines.push(`| ⚡ 日常使用（看剧、办公） | 性价比均衡 | ${firstPricing(balancedAirports)} | ${names3} | [查看详情](#${categoryAnchor('balanced')}) |`);
-  }
-  if (cats.premium) {
-    const premiumAirports = cats.premium.airports || [];
-    const names = premiumAirports.slice(0, 2).map(a => a.name).join('、');
-    const extra = premiumAirports[2];
-    lines.push(`| 👔 商务办公（高稳定） | 高端专线 | ${firstPricing(premiumAirports)} | ${names} | [查看详情](#category-premium) |`);
-    lines.push(`| 🎮 游戏加速（低延迟） | 高端专线 | ${airportPricing(extra, firstPricing(premiumAirports))} | ${extra?.name || names || '-'} | [查看详情](#category-premium) |`);
-  }
-  if (cats.payAsYouGo) {
-    const paygAirports = cats.payAsYouGo.airports || [];
-    const names = paygAirports.slice(0, 2).map(a => a.name).join('、');
-    lines.push(`| 📦 轻度使用（备用） | 按量计费 | ${firstPricing(paygAirports, '按需')} | ${names} | [查看详情](#${categoryAnchor('payAsYouGo')}) |`);
-  }
-  if (data.no_aff?.length) {
-    const names = data.no_aff.slice(0, 2).map(a => a.name).join('、');
-    lines.push(`| 🔗 纯净推荐（无返利） | 无AFF/纯净 | ${firstPricing(data.no_aff)} | ${names} | [查看详情](#${NO_AFF_ANCHOR}) |`);
+
+  // 本期编辑推荐
+  lines.push('## 🏆 本期主推机场');
+  lines.push('');
+  lines.push('以下按大众读者的使用场景与购买门槛排序。');
+  lines.push('');
+  lines.push('- **日常主力高性价比**：选 **COCODUCK**（月付 17 元）或 **Fastlink**（月付 20 元）。');
+  lines.push('- **延迟与晚高峰追求**：选 **肯の机**（三网直连天花板）或 **MESL**（纯专线）。');
+  lines.push('- **常备防失联**：买一个 **喵喵网络**（20 元一次性不限时按量）作为主线波动时的救急备用。');
+  lines.push('');
+  lines.push('| 排序与定位 | 机场名称 | 类型/协议 | 起步价与规格 | 核心特点与定位描述 | 链接 |');
+  lines.push('|---|---|---|---|---|---|');
+  const airportByName = new Map(allAirports.map(a => [String(a.name || '').trim().toLowerCase(), a]));
+  for (const featured of FIXED_FEATURED_AIRPORTS) {
+    const a = airportByName.get(featured.name.trim().toLowerCase());
+    if (!a) continue;
+    const link = a.url ? `[直达](${a.url})` : '-';
+    lines.push(`| **${markdownCell(featured.positioning)}** | **${markdownCell(featured.name)}** | ${markdownCell(featured.lineType)} | ${markdownCell(featured.pricing)} | ${markdownCell(featured.description)} | ${link} |`);
   }
   lines.push('');
   lines.push('---');
@@ -270,21 +365,7 @@ function generateFullReadme(data) {
 
       lines.push(`### ${i + 1}. ${a.name}${badgeStr}`);
       lines.push('');
-      if (a.url) lines.push(`**🔗 官网：** [点击访问](${a.url})`);
-      lines.push('');
-      lines.push('| 项目 | 说明 |');
-      lines.push('|-----|------|');
-      lines.push(`| **线路类型** | ${a.lineType || '-'} |`);
-      if (a.accessType) lines.push(`| **接入方式** | ${accessTypeLabel(a.accessType)} |`);
-      if (a.coupon) lines.push(`| **优惠券/码** | \`${a.coupon}\` |`);
-      if (a.features?.length) lines.push(`| **核心特色** | ${a.features.join('，')} |`);
-      if (a.description) lines.push(`| **简介** | ${a.description} |`);
-      lines.push(`| **起步价** | ${a.pricing || '-'} |`);
-      lines.push(`| **推荐指数** | ${recommendationRating(a)} |`);
-      lines.push('');
-      if (a.tags?.length) {
-        lines.push(`**核心标签：** ${a.tags.map(t => `\`${t}\``).join(' ')}`);
-      }
+      lines.push(...generateAirportDetails(a));
       // SKYLUMO cross-reference
       if (a.name === 'SKYLUMO' && key === 'budget' && cats.payAsYouGo) {
         lines.push('');
@@ -317,21 +398,7 @@ function generateFullReadme(data) {
     for (const a of data.no_aff) {
       lines.push(`### ${a.name}`);
       lines.push('');
-      if (a.url) lines.push(`**🔗 官网：** [点击访问](${a.url})`);
-      lines.push('');
-      lines.push('| 项目 | 说明 |');
-      lines.push('|-----|------|');
-      lines.push(`| **线路类型** | ${a.lineType || '-'} |`);
-      if (a.accessType) lines.push(`| **接入方式** | ${accessTypeLabel(a.accessType)} |`);
-      if (a.coupon) lines.push(`| **优惠券/码** | \`${a.coupon}\` |`);
-      if (a.features?.length) lines.push(`| **核心特色** | ${a.features.join('，')} |`);
-      if (a.description) lines.push(`| **简介** | ${a.description} |`);
-      lines.push(`| **起步价** | ${a.pricing || '-'} |`);
-      lines.push(`| **推荐指数** | ${recommendationRating(a)} |`);
-      lines.push('');
-      if (a.tags?.length) {
-        lines.push(`**核心标签：** ${a.tags.map(t => `\`${t}\``).join(' ')}`);
-      }
+      lines.push(...generateAirportDetails(a));
       lines.push('');
       lines.push('---');
       lines.push('');
@@ -490,36 +557,7 @@ function generateSimpleReadme(data) {
   lines.push('');
 
   // Quick selection guide
-  lines.push('## ⚡ 快速选择指南');
-  lines.push('');
-  lines.push('| 使用场景 | 推荐类型 | 参考价格 | 首选推荐 | 备用推荐 |');
-  lines.push('|---------|---------|---------|---------|---------|');
-  if (cats.free_trial) {
-    const arr = cats.free_trial.airports || [];
-    const [a, b] = [arr[0], arr[1]];
-    lines.push(`| 🆓 先测试后购买 | 免费试用 | 免费 | ${a?.name || '-'} | ${b?.name || '-'} |`);
-  }
-  if (cats.budget) {
-    const arr = cats.budget.airports || [];
-    const [a, b] = [arr[0], arr[1]];
-    lines.push(`| 💰 预算有限（学生党） | 入门经济 | ${firstPricing(arr)} | ${a?.name || '-'} | ${b?.name || '-'} |`);
-  }
-  if (cats.balanced) {
-    const arr = cats.balanced.airports || [];
-    const [a, b, c] = [arr[0], arr[1], arr[2]];
-    lines.push(`| ⚡ 日常主力（看剧办公） | 性价比均衡 | ${firstPricing(arr)} | ${a?.name || '-'} / ${b?.name || '-'} | ${c?.name || '-'} |`);
-  }
-  if (cats.premium) {
-    const arr = cats.premium.airports || [];
-    const [a, b, c] = [arr[0], arr[1], arr[2]];
-    lines.push(`| 👔 商务办公（高稳定） | 高端专线 | ${firstPricing(arr)} | ${a?.name || '-'} / ${b?.name || '-'} | ${c?.name || '-'} |`);
-    lines.push(`| 🎮 游戏加速（低延迟） | 高端专线 | ${airportPricing(c, firstPricing(arr))} | ${c?.name || '-'} | ${a?.name || '-'} |`);
-  }
-  if (cats.payAsYouGo) {
-    const arr = cats.payAsYouGo.airports || [];
-    const [a, b] = [arr[0], arr[1]];
-    lines.push(`| 📦 轻度使用（备用） | 按量计费 | ${firstPricing(arr, '按需')} | ${a?.name || '-'} | ${b?.name || '-'} |`);
-  }
+  lines.push(...generateQuickSelectionGuide(data, 'README.md'));
   lines.push('');
   lines.push('---');
   lines.push('');
