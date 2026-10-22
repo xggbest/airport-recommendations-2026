@@ -5,7 +5,7 @@
 ![Forks](https://img.shields.io/github/forks/everett7623/airport-recommendations-2026?style=social)
 ![Included](https://img.shields.io/badge/Included-61%20Airports-informational)
 ![Visitors](https://visitor-badge.laobi.icu/badge?page_id=everett7623.airport-recommendations-2026)
-![License](https://img.shields.io/github/license/everett7623/airport-recommendations-2026)
+[![许可证：CC BY-NC-SA 4.0](https://img.shields.io/badge/license-CC_BY--NC--SA_4.0-lightgrey)](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans)
 
 > **📌 本项目定位：** 机场推荐索引与筛选工具 | 覆盖免费试用、入门经济、性价比、高端专线、按量计费等全类型 | 支持关键词搜索与标签筛选 | 每日自动同步 VPSKnow 数据
 > 如果这个项目对你有帮助，请点个 Star ⭐ 支持一下！
@@ -34,18 +34,29 @@
 - [❓ 常见问题](#-常见问题)
 - [📄 许可与利益披露](#license-and-disclosure)
 - [⚠️ 免责声明](#disclaimer)
+- [🛡️ 风险反馈与下架记录](#-风险反馈与下架记录)
 
 ---
 
 > ⚠️ **风险提示：** 机场行业存在停服/跑路风险，建议**优先月付**，避免大额年付。同时备用 2–3 个机场互为容灾。详见 [免责声明](#disclaimer) 与 [风险控制指南](docs/blacklist.md)。
 
+## 🛡️ 风险反馈与下架记录
+
+遇到具体节点、订阅或客户端故障，请提交 [🛠️ 机场问题 / 故障反馈](https://github.com/everett7623/airport-recommendations-2026/issues/new?template=service-issue.md)；官网失联、退款失败或疑似停止运营，请提交 [🚨 疑似跑路 / 下架报告](https://github.com/everett7623/airport-recommendations-2026/issues/new?template=delist-report.md)。一次超时不等于跑路，未核实的 Issue 不代表项目结论。
+
+- [提交服务问题](https://github.com/everett7623/airport-recommendations-2026/issues/new?template=service-issue.md)
+- [提交疑似跑路/下架报告](https://github.com/everett7623/airport-recommendations-2026/issues/new?template=delist-report.md)
+- [查看风险反馈 Issue](https://github.com/everett7623/airport-recommendations-2026/issues?q=is%3Aissue+label%3A%22%E2%9A%A0%EF%B8%8F+%E9%A3%8E%E9%99%A9%E5%8F%8D%E9%A6%88%22)
+- [查看已核实下架名单](docs/blacklist.md)
+- [查看评分与证据规则](docs/methodology.md)
+
 ---
 
 ## 📢 最新活动与公告
 
-### 2026-10-20 更新
+### 2026-10-21 更新
 - ✅ **同步：** 与 [VPSKnow.com](https://www.vpsknow.com/airport-recommendations) 机场推荐数据同步更新。
-- 🆕 **新增：** 顺畅网络。
+- 🔄 **调整：** 一翻云、二猫云、光年梯、光速云、全球云、唯兔云、宇宙云、快狸、瞬云、速界 的资料、分类或运营状态已更新。
 - ⛔ **当前正式下架记录：** Sogo云、OneStep。
 
 👉 **查看完整评测与详细图文教程：[VPSKnow 机场推荐榜单](https://www.vpsknow.com/airport-recommendations)**（实时更新，内容更全）
@@ -56,7 +67,7 @@
 
 **按使用场景初筛，先核对套餐再试用：**
 
-> 数据版本：2026-10-20；代表机场与价格随 VPSKnow 每日同步更新，按源分类顺序展示。
+> 数据版本：2026-10-21；代表机场与价格随 VPSKnow 每日同步更新，按源分类顺序展示。
 
 | 使用场景 | 推荐类型 | 参考价格（逐家对应） | 代表机场 | 详情 |
 |---------|---------|---------|---------|---------|
@@ -212,7 +223,7 @@
 | 参数 | 说明 |
 |:---|:---|
 | **价格** | ¥90/年起（折前） |
-| **线路** | 全 IPLC 专线 |
+| **线路** | 全 IPLC 页面口径 |
 | **接入** | 专用客户端 |
 | **优惠** | `优惠码: sujie888（8折）` |
 | **特点** | ¥15/月·50GB体验包，¥90/年·50GB/月，本地联通下载8.56Mbps，电信5G下载129Mbps |
@@ -297,25 +308,6 @@
 **简介：** 熊猫cloud（原财路云，2026-09-15 更名，注册链接与短链不变）已补首轮测评并确认支持通用订阅。2026-08-16 套餐包含 ¥8/20GB 限购试用、¥7/月 50GB、¥14/月 100GB、¥28/月 200GB、¥21/季 64GB/月、¥168/年 128GB/月及 ¥150/100GB 不限时包。2026-07-30 美国节点单次 Ookla 下载 112.25Mbps，Cloudflare 下载 105.64Mbps，YouTube 4K 连接约 111.9Mbps；AI 与主流流媒体多数可用，但出口为机房 IP，DNS/WebRTC 和较高延迟需留意。
 
 **标签：** `VLESS` `低价入门` `短周期先试`
-
----
-
-### 9. 唯兔云
-
-**🔗 官网：** [直达](https://go.uukk.de/wty)
-
-| 参数 | 说明 |
-|:---|:---|
-| **价格** | ¥6.6/月起（年付） |
-| **线路** | IPLC专线 |
-| **接入** | 专用客户端 |
-| **优惠** | `优惠码: rabbit` |
-| **特点** | IPLC专线，不限设备数，流媒体/TikTok解锁，年付¥79.9起 |
-| **推荐** | 待评 · 证据低 |
-
-**简介：** 唯兔云，主打高性价比 IPLC 专线。采用新 SS 协议，不限设备数且无倍率，稳定解锁流媒体与AI服务。年付 79.9 元（约 ¥6.6/月），另有不限时套餐可选。
-
-**标签：** `高性价比` `流媒体` `不限时可选`
 
 ---
 
@@ -412,7 +404,7 @@
 | 参数 | 说明 |
 |:---|:---|
 | **价格** | ¥17/月起 |
-| **线路** | IPLC专线 |
+| **线路** | IPLC页面口径 |
 | **接入** | 专用客户端 |
 | **优惠** | 未提供 |
 | **特点** | IPLC专线，原生IP流媒体，晚高峰不限速，月付¥17起 |
@@ -431,7 +423,7 @@
 | 参数 | 说明 |
 |:---|:---|
 | **价格** | ¥20/月起（年付¥99起） |
-| **线路** | IPLC/IEPL专线 |
+| **线路** | IPLC/IEPL页面口径 |
 | **接入** | 专用客户端 |
 | **优惠** | `月付及以上 8 折：gz80；年付 85 折：gz85（有效期 2026-09-24 至 2026-10-25，结账页复核）` |
 | **特点** | IPLC/IEPL专线，原生节点流媒体全解锁，晚高峰高冗余不卡顿，轻量版年付99元起 |
@@ -440,82 +432,6 @@
 **简介：** 全球云，采用企业级 IPLC/IEPL 专线，结合智能负载均衡与三网入口优化，2Gbps+ 带宽接入，晚高峰稳定。原生节点完美解锁 Netflix、Disney+、TikTok 及 ChatGPT。
 
 **标签：** `流媒体` `专线` `高性价比`
-
----
-
-### 7. 一翻云
-
-**🔗 官网：** [直达](https://go.uukk.de/1flyun)
-
-| 参数 | 说明 |
-|:---|:---|
-| **价格** | ¥25/月起（年付¥100/年） |
-| **线路** | IEPL专线 |
-| **接入** | 专用客户端 |
-| **优惠** | `优惠码: 1FLYYUN（9折）` |
-| **特点** | VLESS+IEPL专线，60+节点x1倍率，晚高峰不限速，年付¥100/年起 |
-| **推荐** | ⭐⭐ · 争议待核 · 证据低 |
-
-**简介：** 一翻云，VLESS 协议 + 企业级 IEPL 专线，三网优化智能负载均衡。60+节点覆盖港台日新马美等全球地区，全节点 x1 倍率，晚高峰不限速。流媒体稳定解锁，年付版 ¥100/年，性价比突出。
-
-**标签：** `新晋推荐` `流媒体解锁` `专线稳定`
-
----
-
-### 8. 快狸
-
-**🔗 官网：** [直达](https://go.uukk.de/kuaili)
-
-| 参数 | 说明 |
-|:---|:---|
-| **价格** | ¥96/年起（折后） |
-| **线路** | IEPL专线 |
-| **接入** | 专用客户端 |
-| **优惠** | `优惠码: vpsknow（8折）` |
-| **特点** | IEPL专线接入，专用客户端，全线流媒体/AI解锁，晚高峰4K流畅 |
-| **推荐** | 待评 · 证据低 |
-
-**简介：** 快狸提供 VLESS 协议与企业级 IEPL 专线接入，支持三网优化分流、流媒体与 AI 服务。目前仅支持专用客户端，不提供通用订阅。
-
-**标签：** `专用客户端` `IEPL专线` `流媒体解锁`
-
----
-
-### 9. 光年梯
-
-**🔗 官网：** [直达](https://go.uukk.de/lightyearti)
-
-| 参数 | 说明 |
-|:---|:---|
-| **价格** | ¥18/月起 |
-| **线路** | IEPL专线 |
-| **接入** | 专用客户端 |
-| **优惠** | 未提供 |
-| **特点** | IEPL专线，全节点1倍率，7折优惠中，不限时套餐 |
-| **推荐** | 待评 · 证据低 |
-
-**简介：** 光年梯, 新加坡团队运营的 IEPL SS 专线机场。全节点 1 倍率，晚高峰不限速，稳定解锁 ChatGPT 及流媒体。
-
-**标签：** `SS协议` `稳定` `新加坡背景`
-
----
-
-### 10. 宇宙云
-
-**🔗 官网：** [直达](https://go.uukk.de/yuzhoucloud)
-
-| 参数 | 说明 |
-|:---|:---|
-| **价格** | ¥12.5/月起（年付¥96/年） |
-| **线路** | IEPL专线 |
-| **接入** | 专用客户端 |
-| **优惠** | 未提供 |
-| **特点** | VLESS+IEPL专线，60+节点x1倍率，晚高峰不限速，专用客户端 |
-| **推荐** | ⭐ · 暂停推荐 · 证据中 |
-
-**简介：** 宇宙云，VLESS 协议 + 企业级 IEPL 专线，三网优化智能负载均衡。60+节点覆盖港台日新马美等全球地区，全节点专线接入，晚高峰不限速4K秒开。流媒体稳定解锁，提供超值年付小包 ¥120/年，仅提供专用客户端一键连接，不提供通用订阅。
-
-**标签：** `新晋推荐` `流媒体解锁` `专线稳定`
 
 ---
 
@@ -772,22 +688,17 @@
 | **山水云** | VLESS/通用订阅 | ¥12/月 100GB起（年付¥77起） | 流媒体 ❓ · ChatGPT ✅ | `低价入门` `通用订阅` `短周期先试` | ⭐⭐⭐ · 短期候选 · 证据中 | [直达](https://go.uukk.de/shanshuiyun) |
 | **锦云** | Vless节点 | ¥4.8/月 50GB起 | 流媒体 ✅ · ChatGPT ✅ | `AI解锁` `低价入门` `短周期先试` | ⭐⭐ · 争议待核 · 证据低 | [直达](https://go.uukk.de/jinyun) |
 | **鲤云** | VLESS节点 | ¥7/月 50GB起 | 流媒体 ✅ · ChatGPT ✅ | `AI解锁` `低价入门` `短周期先试` | ⭐⭐⭐⭐ · 短期候选 · 证据中 | [直达](https://go.uukk.de/liyun) |
-| **速界** | 全 IPLC 专线 | ¥90/年起（折前） | 流媒体 ❓ · ChatGPT ❓ | `线路差异明显` `不限设备` `全节点x1` | ⭐⭐ · 线路差异 · 证据中 | [直达](https://go.uukk.de/speedworld) |
+| **速界** | 全 IPLC 页面口径 | ¥90/年起（折前） | 流媒体 ❓ · ChatGPT ❓ | `线路差异明显` `不限设备` `全节点x1` | ⭐⭐ · 线路差异 · 证据中 | [直达](https://go.uukk.de/speedworld) |
 | **轻语机场** | AnyTLS/IEPL | ¥10/月起 | 流媒体 ✅ · ChatGPT ✅ | `AI解锁` `Emby影音` `低价入门` | ⭐⭐⭐⭐ · 短期候选 · 证据中 | [直达](https://go.uukk.de/qingyu) |
 | **COCODUCK VPN** | IEPL/BGP | ¥17/月 100GB起 | 流媒体 ❓ · ChatGPT ✅ | `VLESS` `性价比` `短周期先试` | ⭐⭐⭐⭐ · 短期候选 · 证据中 | [直达](https://go.uukk.de/cocoduck) |
 | **秒秒云** | 隧道中转 | ¥14/月起（年付¥79起） | 流媒体 ❓ · ChatGPT ❓ | `高性价比` `AnyTLS` `不限时可选` | 待评 · 证据低 | [直达](https://go.uukk.de/miaomiaoyun) |
 | **熊猫cloud** | VLESS节点 | ¥8试用；¥7/月50GB | 流媒体 ❓ · ChatGPT ❓ | `VLESS` `低价入门` `短周期先试` | ⭐⭐⭐⭐ · 短期候选 · 证据中 | [直达](https://go.uukk.de/cly) |
-| **唯兔云** | IPLC专线 | ¥6.6/月起（年付） | 流媒体 ✅ · ChatGPT ❓ | `高性价比` `流媒体` `不限时可选` | 待评 · 证据低 | [直达](https://go.uukk.de/wty) |
 | **Fastlink** | BGP/IPLC页面口径 | ¥20/月起 | 流媒体 ❓ · ChatGPT ❓ | `专用客户端` `约30项节点` `短周期先试` | ⭐⭐⭐ · 恢复观察 · 证据中 | [直达](https://go.uukk.de/fastlink) |
 | **极速Cloud** | CN2 GIA/AS9929/CMIN2 | ¥15/月起 | 流媒体 ❓ · ChatGPT ❓ | `VLESS` `多地区` `隐私待查` | ⭐⭐⭐ · 短期候选 · 证据中 | [直达](https://go.uukk.de/jscloud) |
 | **Nice加速专线机场** | 南北双通道专线 | ¥15/月 50GB起 | 流媒体 ✅ · ChatGPT ✅ | `AI解锁` `美国台湾家宽` `短周期先试` | ⭐⭐ · 争议待核 · 证据低 | [直达](https://go.uukk.de/nicecc) |
 | **极连云** | IPLC/IEPL专线 | ¥14.4/月起 | 流媒体 ✅ · ChatGPT ✅ | `专线` `流媒体` `高性价比` | ⭐⭐ · 争议待核 · 证据低 | [直达](https://go.uukk.de/jly) |
-| **光速云** | IPLC专线 | ¥17/月起 | 流媒体 ✅ · ChatGPT ❓ | `高性价比` `流媒体` `大流量` | ⭐⭐ · 争议待核 · 证据低 | [直达](https://go.uukk.de/lightspeed) |
-| **全球云** | IPLC/IEPL专线 | ¥20/月起（年付¥99起） | 流媒体 ✅ · ChatGPT ✅ | `流媒体` `专线` `高性价比` | ⭐⭐ · 争议待核 · 证据低 | [直达](https://go.uukk.de/globalyun) |
-| **一翻云** | IEPL专线 | ¥25/月起（年付¥100/年） | 流媒体 ✅ · ChatGPT ❓ | `新晋推荐` `流媒体解锁` `专线稳定` | ⭐⭐ · 争议待核 · 证据低 | [直达](https://go.uukk.de/1flyun) |
-| **快狸** | IEPL专线 | ¥96/年起（折后） | 流媒体 ✅ · ChatGPT ✅ | `专用客户端` `IEPL专线` `流媒体解锁` | 待评 · 证据低 | [直达](https://go.uukk.de/kuaili) |
-| **光年梯** | IEPL专线 | ¥18/月起 | 流媒体 ❓ · ChatGPT ✅ | `SS协议` `稳定` `新加坡背景` | 待评 · 证据低 | [直达](https://go.uukk.de/lightyearti) |
-| **宇宙云** | IEPL专线 | ¥12.5/月起（年付¥96/年） | 流媒体 ✅ · ChatGPT ❓ | `新晋推荐` `流媒体解锁` `专线稳定` | ⭐ · 暂停推荐 · 证据中 | [直达](https://go.uukk.de/yuzhoucloud) |
+| **光速云** | IPLC页面口径 | ¥17/月起 | 流媒体 ✅ · ChatGPT ❓ | `高性价比` `流媒体` `大流量` | ⭐⭐ · 争议待核 · 证据低 | [直达](https://go.uukk.de/lightspeed) |
+| **全球云** | IPLC/IEPL页面口径 | ¥20/月起（年付¥99起） | 流媒体 ✅ · ChatGPT ✅ | `流媒体` `专线` `高性价比` | ⭐⭐ · 争议待核 · 证据低 | [直达](https://go.uukk.de/globalyun) |
 | **TAG** | 线路架构待验证 | ¥114/月 500GB | 流媒体 ❓ · ChatGPT ❓ | `全球节点` `美国视频` `注意倍率` | ⭐⭐⭐⭐ · 优先短测 · 证据中 | [直达](https://go.uukk.de/tag) |
 | **MESL** | IEPL专线 | ¥50/月起 | 流媒体 ✅ · ChatGPT ✅ | `低调` `高端线路` `AI友好` | ⭐⭐⭐⭐ · 升级待核 · 证据中 | [直达](https://go.uukk.de/mesl) |
 | **ImmTelecom** | IEPL/IPLC专线 | ¥72.45/月起 | 流媒体 ✅ · ChatGPT ✅ | `AnyTLS` `多地区节点` `高端` | ⭐⭐⭐⭐ · 短期候选 · 证据中 | [直达](https://go.uukk.de/immtele) |
@@ -798,9 +709,14 @@
 | **AmyTelecom** | IEPL专线 | ¥273/年起 | 流媒体 ✅ · ChatGPT ❓ | `佩奇系` `流媒体解锁` `稳定` | ⭐⭐ · 可用待核 · 证据低 | [直达](https://go.uukk.de/amytele) |
 | **Kuromis** | IEPL专线 | ¥34/月起 | 流媒体 ❓ · ChatGPT ❓ | `贵族机场` `IEPL专线` `高峰期稳定` | 待评 · 证据低 | [直达](https://go.uukk.de/kuromis) |
 | **WgetCloud** | BGP专线 | ¥79/月起 | 流媒体 ❓ · ChatGPT ❓ | `稳定` `企业级` `不差钱` | ⭐⭐⭐⭐ · 主力候选 · 证据中 | [直达](https://go.uukk.de/wgetcloud) |
-| **瞬云** | ANYCAST专线 | ¥16/月起（优惠后） | 流媒体 ✅ · ChatGPT ❓ | `原生节点` `流媒体解锁` `高性价比` | 待评 · 证据低 | [直达](https://go.uukk.de/sy) |
+| **唯兔云** | IPLC页面口径 | ¥6.6/月起（年付） | 流媒体 ✅ · ChatGPT ❓ | `高性价比` `流媒体` `不限时可选` | 待评 · 证据低 | [直达](https://go.uukk.de/wty) |
+| **一翻云** | IEPL页面口径 | ¥25/月起（年付¥100/年） | 流媒体 ✅ · ChatGPT ❓ | `新晋推荐` `流媒体解锁` `专线稳定` | ⭐⭐ · 争议待核 · 证据低 | [直达](https://go.uukk.de/1flyun) |
+| **光年梯** | IEPL页面口径 | ¥18/月起 | 流媒体 ❓ · ChatGPT ✅ | `SS协议` `稳定` `新加坡背景` | 待评 · 证据低 | [直达](https://go.uukk.de/lightyearti) |
+| **快狸** | IEPL页面口径 | ¥96/年起（折后） | 流媒体 ✅ · ChatGPT ✅ | `专用客户端` `IEPL专线` `流媒体解锁` | 待评 · 证据低 | [直达](https://go.uukk.de/kuaili) |
+| **宇宙云** | IEPL页面口径 | ¥12.5/月起（年付¥96/年） | 流媒体 ✅ · ChatGPT ❓ | `新晋推荐` `流媒体解锁` `专线稳定` | ⭐ · 暂停推荐 · 证据中 | [直达](https://go.uukk.de/yuzhoucloud) |
+| **瞬云** | ANYCAST页面口径 | ¥16/月起（优惠后） | 流媒体 ✅ · ChatGPT ❓ | `原生节点` `流媒体解锁` `高性价比` | 待评 · 证据低 | [直达](https://go.uukk.de/sy) |
 | **EdgeNova** | IEPL专线 | ¥86/年起（优惠后） | 流媒体 ❓ · ChatGPT ✅ | `专线` `新锐` `全兼容` | 待评 · 证据低 | [直达](https://go.uukk.de/edgenova) |
-| **二猫云** | IEPL/IPLC专线 | ¥89/年起 | 流媒体 ❓ · ChatGPT ❓ | `专用客户端` `不限设备` `新晋推荐` | ⭐⭐ · 争议待核 · 证据低 | [直达](https://go.uukk.de/2maoyun) |
+| **二猫云** | IEPL/IPLC页面口径 | ¥89/年起 | 流媒体 ❓ · ChatGPT ❓ | `专用客户端` `不限设备` `新晋推荐` | ⭐⭐ · 争议待核 · 证据低 | [直达](https://go.uukk.de/2maoyun) |
 | **U1S1** | 中转专线 | ¥18.8/月起 | 流媒体 ✅ · ChatGPT ✅ | `不限设备` `千兆带宽` `流媒体全解锁` | 待评 · 证据低 | [直达](https://go.uukk.de/u1s1) |
 | **Happy Vless** | VLESS + XHTTP | 0元1GB试用；¥9.9/月起 | 流媒体 ❓ · ChatGPT ❓ | `总榜收录` `试用` `短周期先试` | 待评（新收录） | [直达](https://go.uukk.de/happyvless) |
 | **顺畅网络** | 全隧道中转页面口径 | ¥11/月 500GB起 | 流媒体 ❓ · ChatGPT ❓ | `总榜收录` `低价月付` `通用订阅` | 待评（新收录） | [直达](https://go.uukk.de/scl168) |
@@ -877,7 +793,7 @@
 
 ## 📄 许可与利益披露
 
-除另有说明外，本仓库的原创内容、数据和文档采用 [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans) 许可协议。
+本仓库由本项目原创的 README、教程、方法论和说明文字采用 [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans) 许可；许可范围与排除项见 [许可范围说明](docs/licensing.md)。
 
 你可以在非商业目的下复制、修改和分享相关内容，但须保留 `VPSKnow / everettlabs` 署名及原项目链接，注明修改，并以相同协议共享。
 
@@ -886,6 +802,7 @@
 本项目部分直达链接为推广链接，维护者可能获得佣金或返利。相关合作不影响机场的收录、评价和下架标准。
 
 Fork 或修改版本中的链接、排序和评价仅代表修改者，不代表 VPSKnow 官方观点。第三方名称、商标和 Logo 的权利归各自权利人所有。
+VPSKnow 上游机场数据、第三方 Logo/商标、机场名称与外部链接不因本声明自动获得本项目的再许可；用户提交内容的权利仍归提交者。
 
 ---
 
